@@ -22,4 +22,14 @@ export type IUser = {
   designation: string;
 };
 
-export type UserModel = Model<IUser, Record<string, unknown>>;
+export type UserModel = {
+  isUserExist(
+    email: string
+  ): Promise<Pick<IUser, "email" | "password" | "role">>;
+  isPasswordMatched(
+    givenPassword: string,
+    savedPassword: string
+  ): Promise<boolean>;
+} & Model<IUser>;
+
+// export type UserModel = Model<IUser, Record<string, unknown>>;

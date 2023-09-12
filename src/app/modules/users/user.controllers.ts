@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { UserService } from "./user.services";
-import catchAsync from "../../shared/catchAsync";
-import sendResponse from "../../shared/sendResponse";
+import catchAsync from "../../../shared/catchAsync";
+import sendResponse from "../../../shared/sendResponse";
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;

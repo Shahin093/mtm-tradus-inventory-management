@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IUser, UserModel } from "./user.interfaces";
+import bcrypt from "bcrypt";
 
 const UserSchema = new Schema<IUser, UserModel>(
   {
@@ -76,5 +77,33 @@ const UserSchema = new Schema<IUser, UserModel>(
     timestamps: true,
   }
 );
+
+UserSchema.statics.isUserExist = async function (
+  email: string
+): Promise<IUser | null> {
+  return await Users.findOne(
+    { email: email },
+    { password: 1, email: 1, role: 1 }
+  );
+};
+
+UserSchema.statics.isPasswordMatched = async function (
+  givenPassword: string,
+  savedPassword: string
+): Promise<boolean> {
+  return await bcrypt.compare(givenPassword, savedPassword);
+};
+
+// hashing password
+UserSchema.pre("save", async function (next) {
+  const user = this;
+  user.password = await bcrypt.hash(user.password, 12);
+
+  // if (!user.needsPasswordChange) {
+  //   user.passwordChangeAt = new Date();
+  // }
+
+  next();
+});
 
 export const Users = model<IUser, UserModel>("Users", UserSchema);

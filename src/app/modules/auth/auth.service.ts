@@ -2,13 +2,14 @@ import httpStatus from "http-status";
 import ApiError from "../../../errors/ApiError";
 import { Users } from "../users/user.model";
 import {
+  IChangePassword,
   ILoginUser,
   ILoginUserResponse,
   IRefreshTokenResponse,
 } from "./auth.interface";
 import { jwtHelpers } from "../../../helpers/jwtHelpers";
 import config from "../../../config";
-import { Secret } from "jsonwebtoken";
+import { JwtPayload, Secret } from "jsonwebtoken";
 
 const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { email, password } = payload;
@@ -87,7 +88,36 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   };
 };
 
+const changePassword = async (
+  user: JwtPayload | null,
+  payload: IChangePassword
+): Promise<void> => {
+  const { oldPassword, newPassword } = payload;
+
+  // Checking is user exist
+
+  const isUserExist = await Users.findOne({ email: user?.userEmail }).select(
+    "+password"
+  );
+  // check user exits
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User does not exits.");
+  }
+
+  // match password
+  if (
+    isUserExist?.password &&
+    !(await Users.isPasswordMatched(oldPassword, isUserExist?.password))
+  ) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, "password do not matched!");
+  }
+
+  // updating using save() :
+  isUserExist.save();
+};
+
 export const AuthService = {
   loginUser,
   refreshToken,
+  changePassword,
 };

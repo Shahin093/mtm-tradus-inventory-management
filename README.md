@@ -22,10 +22,18 @@ User Login :
 
 refresh-token User :
 
-- when The users finish expireTime , so The users have to use refresh-token route for new accessToken.
-  i have tried various Special Features :
+### i have tried various Special Features :
+
 - Token Verification
 - Get Token From Cookies
 - Set Token into Cookies
 - New AccessToken
 - using Zod Validation for Refresh Token.
+- when The users finish expireTime , so The users have to use refresh-token route for new accessToken.
+  end .
+
+Change User Password :
+
+- Authentication access (if you are not a admin or user so you won't be able to password-change.)
+- after finishing token verify we can get user information(userEmail, role).
+- i have compared oldPassword and newPassword. i have use bcrypt for compare password.

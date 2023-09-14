@@ -85,7 +85,13 @@ const getAllSupplier = async (
   };
 };
 
+const getSingleSupplier = async (id: string): Promise<ISupplier | null> => {
+  const result = await Supplier.findById(id);
+  return result;
+};
+
 export const SupplierService = {
   insertIntoDB,
   getAllSupplier,
+  getSingleSupplier,
 };

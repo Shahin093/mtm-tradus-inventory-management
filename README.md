@@ -81,3 +81,10 @@ Change User Password :
 - you can searching all of Supplier.
 - you can pagination all of Supplier.
 - (Authentication): it could access only Admins & Yourself.
+
+### GET by ID
+
+- you can get single Supplier using GET Route.
+- Dynamic route ("/:id")
+- (Authentication): it could access only Admins & Yourself.
+-

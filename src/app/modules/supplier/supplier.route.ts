@@ -6,6 +6,7 @@ import { SupplierValidation } from "./supplier.validation";
 const router = express.Router();
 
 router.get("/", SupplierController.getAllSupplier);
+router.get("/:id", SupplierController.getSingleSupplier);
 
 router.post(
   "/",

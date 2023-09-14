@@ -6,6 +6,7 @@ import httpStatus from "http-status";
 import pick from "../../../shared/pick";
 import { supplierFilterableFields } from "./supplier.constants";
 import { paginationFields } from "../../../constrants/pagination";
+import { ISupplier } from "./supplier.interface";
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { ...supplierData } = req.body;
@@ -36,7 +37,21 @@ const getAllSupplier = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const getSingleSupplier = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const result = await SupplierService.getSingleSupplier(id);
+
+  sendResponse<ISupplier>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Supplier Retrieved Successfully",
+    data: result,
+  });
+});
 export const SupplierController = {
   insertIntoDB,
   getAllSupplier,
+  getSingleSupplier,
 };

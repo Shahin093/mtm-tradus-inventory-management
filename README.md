@@ -74,3 +74,10 @@ Change User Password :
 - Zod validation (If you want to create your profile ,you have to fill up all of fields. if don't fill up the any fields you can see zodValidation error)
 - (Authentication): It could access only Admins.
 - Folder structure : modules prettrn
+
+### GetAllSupplier / Filters
+
+- you can filtering all of Supplier.
+- you can searching all of Supplier.
+- you can pagination all of Supplier.
+- (Authentication): it could access only Admins & Yourself.

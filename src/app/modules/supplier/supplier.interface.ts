@@ -16,4 +16,13 @@ export type ISupplier = {
   status: string;
 };
 
+export type ISupplierFilters = {
+  searchTerm?: string;
+  name?: string;
+  email?: string;
+  // _id?: string;
+  location?: string;
+  status?: string;
+};
+
 export type SupplierModel = Model<ISupplier, Record<string, unknown>>;

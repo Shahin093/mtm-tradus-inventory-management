@@ -5,6 +5,8 @@ import { SupplierValidation } from "./supplier.validation";
 
 const router = express.Router();
 
+router.get("/", SupplierController.getAllSupplier);
+
 router.post(
   "/",
   zodValidateRequest(SupplierValidation.create),

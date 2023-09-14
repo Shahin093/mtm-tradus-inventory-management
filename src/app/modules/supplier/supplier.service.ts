@@ -6,6 +6,8 @@ import { IUserFilters } from "../users/user.interfaces";
 import { supplierSearchableFields } from "./supplier.constants";
 import { ISupplier } from "./supplier.interface";
 import { Supplier } from "./supplier.model";
+import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
 
 // {
 //   "name":"Raju",
@@ -90,8 +92,51 @@ const getSingleSupplier = async (id: string): Promise<ISupplier | null> => {
   return result;
 };
 
+const deleteFromDB = async (id: string): Promise<ISupplier> => {
+  const isExistSupplier = await Supplier.findOne({ _id: id });
+
+  if (!isExistSupplier) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Supplier is not exist");
+  }
+
+  const result = await Supplier.deleteOne(
+    { _id: id },
+    {
+      new: true,
+    }
+  );
+
+  if (result.deletedCount === 1) {
+    // Return the deleted user object
+    return isExistSupplier;
+  } else {
+    throw new Error("Failed to delete user");
+  }
+};
+
+const updateSuppler = async (
+  id: string,
+  payload: Partial<ISupplier>
+): Promise<ISupplier | null> => {
+  const isExist = await Supplier.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Suppler not found !");
+  }
+
+  const result = await Supplier.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+
+  return result;
+};
+
 export const SupplierService = {
   insertIntoDB,
   getAllSupplier,
   getSingleSupplier,
+  deleteFromDB,
+  updateSuppler,
 };

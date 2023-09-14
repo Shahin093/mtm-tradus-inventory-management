@@ -50,8 +50,37 @@ const getSingleSupplier = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const updateSupplier = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+
+  const result = await SupplierService.updateSuppler(id, updatedData);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Supplier updated successfully !",
+    data: result,
+  });
+});
+
+const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const result = await SupplierService.deleteFromDB(id);
+
+  sendResponse<ISupplier | null>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Supplier deleted successfully !",
+    data: result,
+  });
+});
 export const SupplierController = {
   insertIntoDB,
   getAllSupplier,
   getSingleSupplier,
+  updateSupplier,
+  deleteFromDB,
 };

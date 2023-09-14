@@ -88,3 +88,18 @@ Change User Password :
 - Dynamic route ("/:id")
 - (Authentication): it could access only Admins & Yourself.
 -
+
+### Update Supplier
+
+- you can update your Supplier account.
+- if The user is not exist they won't be update Data.
+- (Authentication): It can access only Admins & Yourself.
+- Zod validation (If you want to create your profile ,you have to fill up all of fields. if don't fill up the any fields you can see zodValidation error)
+- i have used dynamic route("/:id")
+
+### Delete Supplier
+
+- you can not Delete your Suppler Account.
+- if The Suppler is not exist they won't be delete Data.
+- (Authentication): It can access only Admins.
+- i have used dynamic route("/:id")

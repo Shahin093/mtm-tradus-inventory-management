@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { location, status } from "./supplier.constants";
 
 const create = z.object({
   body: z.object({
@@ -32,6 +33,22 @@ const create = z.object({
   }),
 });
 
+const update = z.object({
+  body: z.object({
+    name: z.string().optional(),
+    email: z.string().optional(),
+    // brand: z.string({
+    //     required_error: 'Brand is required'
+    // }),
+    contactNumber: z.string().optional(),
+    emergencyContactNumber: z.string().optional(),
+    tradeLicenseNumber: z.number().optional(),
+    presentAddress: z.string().optional(),
+    location: z.enum([...location] as [string, ...string[]]).optional(),
+    status: z.enum([...status] as [string, ...string[]]).optional(),
+  }),
+});
 export const SupplierValidation = {
   create,
+  update,
 };

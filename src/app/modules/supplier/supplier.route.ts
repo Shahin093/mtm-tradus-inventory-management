@@ -14,4 +14,8 @@ router.post(
   SupplierController.insertIntoDB
 );
 
+router.patch("/:id", SupplierController.updateSupplier);
+
+router.delete("/:id", SupplierController.deleteFromDB);
+
 export const SupplierRoutes = router;

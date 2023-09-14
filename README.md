@@ -25,6 +25,13 @@ Pagination, Filtering, JTW Token Verify, auth service, Transaction & callback, Z
 - you will be able to show all of users without password
 - (Authentication): it could access only Admins.
 
+### Update User
+
+- you can update your profile(userData).
+- if The user is not exist , so i won't update your userData.
+- you will be able to show all of users without password
+- (Authentication): It could access only Admins & Yourself.
+
 ## AUTH ENPOINT :
 
 ### User Login :

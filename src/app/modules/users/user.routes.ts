@@ -7,4 +7,6 @@ router.get("/", UserController.getAllUsers);
 
 router.post("/create-user", UserController.insertIntoDB);
 
+router.patch("/:id", UserController.updateUser);
+
 export const UserRoutes = router;

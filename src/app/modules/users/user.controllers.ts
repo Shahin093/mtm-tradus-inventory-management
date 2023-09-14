@@ -5,6 +5,7 @@ import sendResponse from "../../../shared/sendResponse";
 import pick from "../../../shared/pick";
 import { userFilterableFields } from "./user.constants";
 import { paginationFields } from "../../../constrants/pagination";
+import httpStatus from "http-status";
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
@@ -37,7 +38,22 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateUser = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+
+  const result = await UserService.updateUser(id, updatedData);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User updated successfully !",
+    data: result,
+  });
+});
+
 export const UserController = {
   insertIntoDB,
   getAllUsers,
+  updateUser,
 };

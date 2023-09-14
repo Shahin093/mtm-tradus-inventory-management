@@ -99,7 +99,40 @@ const getAllUsers = async (
   };
 };
 
+const updateUser = async (
+  id: string,
+  payload: Partial<IUser>
+): Promise<IUser | null> => {
+  const isExist = await Users.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User not found !");
+  }
+
+  const { name, ...userData } = payload;
+
+  const updatedUserData: Partial<IUser> = { ...userData };
+
+  if (name && Object.keys(name).length > 0) {
+    Object.keys(name).forEach((key) => {
+      const nameKey = `name.${key}` as keyof Partial<IUser>;
+      (updatedUserData as any)[nameKey] = name[key as keyof typeof name];
+    });
+  }
+
+  const result = await Users.findOneAndUpdate({ _id: id }, updatedUserData, {
+    new: true,
+  })
+    .select("-password")
+    .select("-confirmPassword");
+
+  return result;
+};
+
 export const UserService = {
   insertIntoDB,
   getAllUsers,
+  updateUser,
 };

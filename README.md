@@ -8,21 +8,32 @@ ExpressJS, Mongoose, MongoDB, TypeScript, JWT, etc.
 
 ## Challenging Features:
 
-Pagination, Filtering, JTW Token Verify, auth service, Transaction & callback, Zod Validation, Global Error Handler and Carefully using typeScript etc.
+Pagination, Filtering, JTW Token Verify, auth service, Transaction & callback, Zod Validation, Global Error Handler, Instance Methods, Password Hashing, Password Compare, Authentication, and Carefully using typeScript etc.
 
 ## USER ENPOINT : (crud operation)
 
-Create User :
+### Create User :
+
+- When we will create user. such as if your password & confirmPassword is not equal so i can not create user.
+- when we will see user response, Password does not show . i showed all of data without password
+
+### GetAllUsers / Filters
+
+- you can filtering all of users.
+- you can searching all of users.
+- you can pagination all of users.
+- you will be able to show all of users without password
+- (Authentication): it could access only Admins.
 
 ## AUTH ENPOINT :
 
-User Login :
+### User Login :
 
 - I have used (bcrypt, JWT-token, Instance-Methods, isUserExist, Password-Compare, Create-accessToken, Create-refreshToken)
 
-refresh-token User :
+### refresh-token User :
 
-### i have tried various Special Features :
+----i have tried various Special Features :-----
 
 - Token Verification
 - Get Token From Cookies

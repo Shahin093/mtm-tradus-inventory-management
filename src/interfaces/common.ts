@@ -1,4 +1,4 @@
-import { IGenericErrorMessage } from './error';
+import { IGenericErrorMessage } from "./error";
 
 export type IGenericErrorResponse = {
   statusCode: number;
@@ -7,6 +7,7 @@ export type IGenericErrorResponse = {
 };
 
 export type IGenericResponse<T> = {
+  // toObject: any;
   meta: {
     page: number;
     limit: number;

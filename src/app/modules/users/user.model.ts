@@ -99,10 +99,6 @@ UserSchema.pre("save", async function (next) {
   const user = this;
   user.password = await bcrypt.hash(user.password, 12);
 
-  // if (!user.needsPasswordChange) {
-  //   user.passwordChangeAt = new Date();
-  // }
-
   next();
 });
 

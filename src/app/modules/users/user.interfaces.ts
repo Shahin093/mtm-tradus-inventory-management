@@ -6,6 +6,7 @@ export type UserName = {
   middleName: string;
 };
 export type IUser = {
+  toObject: any;
   role: "admin" | "super-admin" | "user";
   password: string;
   confirmPassword: string;
@@ -20,6 +21,18 @@ export type IUser = {
   presentAddress?: string;
   bloodGroup?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
   designation: string;
+};
+
+export type IUserFilters = {
+  searchTerm?: string;
+  id?: string;
+  email?: string;
+  contactNo?: string;
+  emergencyContactNo?: string;
+  gender?: "male" | "female";
+  bloodGroup?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
+  managementDepartment?: string;
+  designation?: string;
 };
 
 export type UserModel = {

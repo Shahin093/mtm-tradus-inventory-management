@@ -6,6 +6,7 @@ import pick from "../../../shared/pick";
 import { userFilterableFields } from "./user.constants";
 import { paginationFields } from "../../../constrants/pagination";
 import httpStatus from "http-status";
+import { IUser } from "./user.interfaces";
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
@@ -52,8 +53,22 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteUser = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+
+  const result = await UserService.deleteUser(id);
+
+  sendResponse<IUser | null>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User deleted successfully !",
+    data: result,
+  });
+});
+
 export const UserController = {
   insertIntoDB,
   getAllUsers,
   updateUser,
+  deleteUser,
 };

@@ -131,8 +131,34 @@ const updateUser = async (
   return result;
 };
 
+const deleteUser = async (id: string): Promise<IUser | null> => {
+  const isExist = await Users.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User not found !");
+  }
+  const result = await Users.deleteOne(
+    { _id: id },
+    {
+      new: true,
+    }
+  );
+
+  if (result.deletedCount === 1) {
+    // Return the deleted user object
+    return isExist;
+  } else {
+    throw new Error("Failed to delete user");
+  }
+
+  // return result;
+};
+
 export const UserService = {
   insertIntoDB,
   getAllUsers,
   updateUser,
+  deleteUser,
 };

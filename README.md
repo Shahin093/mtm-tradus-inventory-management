@@ -16,6 +16,8 @@ Pagination, Filtering, JTW Token Verify, auth service, Transaction & callback, Z
 
 - When we will create user. such as if your password & confirmPassword is not equal so i can not create user.
 - when we will see user response, Password does not show . i showed all of data without password
+- Zod validation (If you want to create your profile ,you have to fill up all of fields. if don't fill up the any fields you can see zodValidation error)
+  (Authentication): It could access only Admins & Yourself.
 
 ### GetAllUsers / Filters
 
@@ -28,9 +30,18 @@ Pagination, Filtering, JTW Token Verify, auth service, Transaction & callback, Z
 ### Update User
 
 - you can update your profile(userData).
-- if The user is not exist , so i won't update your userData.
+- if The user is not exist they won't be update Data.
 - you will be able to show all of users without password
 - (Authentication): It could access only Admins & Yourself.
+- Zod validation (If you want to create your profile ,you have to fill up all of fields. if don't fill up the any fields you can see zodValidation error)
+- i have used dynamic route("/:id")
+
+### Delete User
+
+- you can not Delete your profile(userData).
+- if The user is not exist they won't be delete Data.
+- (Authentication): It could access only Admins.
+- i have used dynamic route("/:id")
 
 ## AUTH ENPOINT :
 
@@ -55,3 +66,11 @@ Change User Password :
 - Authentication access (if you are not a admin or user so you won't be able to password-change.)
 - after finishing token verify we can get user information(userEmail, role).
 - i have compared oldPassword and newPassword. i have use bcrypt for compare password.
+
+## Supplier ENPOINT : (crud operation)
+
+### Create Supplier :
+
+- Zod validation (If you want to create your profile ,you have to fill up all of fields. if don't fill up the any fields you can see zodValidation error)
+- (Authentication): It could access only Admins.
+- Folder structure : modules prettrn

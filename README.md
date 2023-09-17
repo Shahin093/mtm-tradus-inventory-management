@@ -126,3 +126,9 @@ route : /api/v1/brands/:id (PATCH)
 ### DELETE Brand :
 
 route : /api/v1/brands/:id (DELETE)
+
+## Implement Product : (Read, insert , update, GetById Delete, filtering, pagination and Zod validation)
+
+### Create Product : Only Access Admin
+
+route : /api/v1/products/create-product (POST)

@@ -8,7 +8,13 @@ import { Brand } from "./brand.model";
 import { Supplier } from "../supplier/supplier.model";
 import ApiError from "../../../errors/ApiError";
 import httpStatus from "http-status";
-
+// {
+//     "name":"CMP",
+//     "email":"si@gamil.com",
+//     "website":"shahin.com",
+//     "products":"ami achi tmr jonno ",
+//     "suppliers":"650299d5b8211a408dbdd56d"
+//   }
 const insertIntoDB = async (payload: IBrand): Promise<IBrand> => {
   const isExist = await Supplier.findById({ _id: payload.suppliers });
   if (!isExist) {

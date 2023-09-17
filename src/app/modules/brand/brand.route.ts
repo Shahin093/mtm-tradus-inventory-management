@@ -11,6 +11,8 @@ router.get("/:id", BrandController.getByIdFromDB);
 
 router.patch("/:id", BrandController.updateFromDB);
 
+router.delete("/:id", BrandController.deleteFromDB);
+
 router.post(
   "/create-brand",
   zodValidateRequest(BrandValidation.create),

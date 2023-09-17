@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get("/", ProductController.getAllFromDB);
 
+router.get("/:id", ProductController.getByIdFromDB);
+
 router.post(
   "/create-product",
   zodValidateRequest(ProductValidation.create),

@@ -34,7 +34,20 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await ProductService.getByIdFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "brand fetched Successfully",
+    data: result,
+  });
+});
+
 export const ProductController = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };

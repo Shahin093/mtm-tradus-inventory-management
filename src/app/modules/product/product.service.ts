@@ -6,6 +6,14 @@ import { productSearchableFields } from "./product.constants";
 import { IProduct, IProductFilters } from "./product.interface";
 import { Product } from "./product.model";
 
+// {
+//     "name":"rowel ciment",
+//     "description": "it is very helpfull in our country. it need to create building , house.",
+//     "unit":"KG",
+//     "imageURL":"shain.jpg",
+//     "category":"sera",
+//     "brand":"65068a04ec5011a0b8354295"
+//   }
 const insertIntoDB = async (payload: IProduct): Promise<IProduct> => {
   const result = (await Product.create(payload)).populate("brand");
 
@@ -70,7 +78,13 @@ const getAllFromDB = async (
   };
 };
 
+const getByIdFromDB = async (id: string): Promise<IProduct | null> => {
+  const result = await Product.findById(id).populate("brand");
+  return result;
+};
+
 export const ProductService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };

@@ -132,3 +132,11 @@ route : /api/v1/brands/:id (DELETE)
 ### Create Product : Only Access Admin
 
 route : /api/v1/products/create-product (POST)
+
+### Get all Product
+
+route : /api/v1/products/ (GET)
+
+### Get Single Product
+
+route : /api/v1/products/:id (GET)

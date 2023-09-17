@@ -74,7 +74,13 @@ const getAllFromDB = async (
   };
 };
 
+const getByIdFromDB = async (id: string): Promise<IStore | null> => {
+  const result = await Store.findById(id).populate("manager");
+  return result;
+};
+
 export const StoreService = {
   insertInToDB,
   getAllFromDB,
+  getByIdFromDB,
 };

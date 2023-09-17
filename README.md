@@ -154,3 +154,7 @@ route : /api/v1/products/:id (DELETE)
 ### Create Store : Only Access Admin
 
 route : /api/v1/stores/create-store (POST)
+
+### Get all Store
+
+route : /api/v1/stores/ (GET)

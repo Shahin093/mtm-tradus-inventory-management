@@ -5,6 +5,7 @@ import sendResponse from "../../../shared/sendResponse";
 import pick from "../../../shared/pick";
 import { storeFilterableFields } from "./store.constants";
 import { paginationFields } from "../../../constrants/pagination";
+import httpStatus from "http-status";
 
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const { ...storeData } = req.body;
@@ -12,7 +13,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await StoreService.insertInToDB(storeData);
 
   sendResponse(res, {
-    statusCode: 400,
+    statusCode: httpStatus.OK,
     success: true,
     message: "store created Successfully",
     data: result,
@@ -26,9 +27,21 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   const result = await StoreService.getAllFromDB(filters, paginationOptions);
 
   sendResponse(res, {
-    statusCode: 400,
+    statusCode: httpStatus.OK,
     success: true,
     message: "stores fetched Successfully",
+    data: result,
+  });
+});
+
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await StoreService.getByIdFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Store fetched Successfully",
     data: result,
   });
 });
@@ -36,4 +49,5 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
 export const StoreController = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
 };

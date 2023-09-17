@@ -4,7 +4,7 @@
 
 ## Using Technologies :
 
-ExpressJS, Mongoose, MongoDB, TypeScript, JWT, etc.
+ExpressJS, Mongoose, MongoDB, TypeScript, JWT, Zod, bcrypt, vercel etc.
 
 ## Challenging Features:
 
@@ -21,9 +21,7 @@ Pagination, Filtering, JTW Token Verify, auth service, Transaction & callback, Z
 
 ### GetAllUsers / Filters
 
-- you can filtering all of users.
-- you can searching all of users.
-- you can pagination all of users.
+- you can filtering, searching, pagination all of users.
 - you will be able to show all of users without password
 - (Authentication): it could access only Admins.
 
@@ -103,3 +101,15 @@ Change User Password :
 - if The Suppler is not exist they won't be delete Data.
 - (Authentication): It can access only Admins.
 - i have used dynamic route("/:id")
+
+## Implement Brand : (Read, insert , update GetById Delete, filtering, pagination, zod validation, )
+
+### Create Brand : Only Access Admin
+
+route : /api/v1/brands/create-brand (POST)
+
+Discuss: i have embed from supplier Schema here. i have checked supplier . if The Supplier is not found , i have responded a error-message.
+
+### Get All Brand and Filters:
+
+route : /api/v1/brands/ (GET)

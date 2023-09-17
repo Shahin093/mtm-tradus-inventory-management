@@ -17,9 +17,6 @@ const create = z.object({
     suppliers: z.string({
       required_error: "Supplier is required!",
     }),
-    status: z.string({
-      required_error: "Status is required!",
-    }),
   }),
 });
 

@@ -5,6 +5,7 @@ const BrandSchema = new Schema<IBrand, BrandModel>(
   {
     name: String,
     email: String,
+    website: String,
     products: String,
     suppliers: {
       type: Schema.Types.ObjectId,

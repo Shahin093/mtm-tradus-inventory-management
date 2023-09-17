@@ -102,7 +102,7 @@ Change User Password :
 - (Authentication): It can access only Admins.
 - i have used dynamic route("/:id")
 
-## Implement Brand : (Read, insert , update GetById Delete, filtering, pagination, zod validation, )
+## Implement Brand : (Read, insert , update, GetById Delete, filtering, pagination and Zod validation)
 
 ### Create Brand : Only Access Admin
 
@@ -113,3 +113,7 @@ Discuss: i have embed from supplier Schema here. i have checked supplier . if Th
 ### Get All Brand and Filters:
 
 route : /api/v1/brands/ (GET)
+
+### Get By Brand and Filters:
+
+route : /api/v1/brands/:id (GET)

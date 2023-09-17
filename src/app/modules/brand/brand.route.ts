@@ -1,10 +1,18 @@
 import express from "express";
 import { BrandController } from "./brand.controller";
+import zodValidateRequest from "../../middleware/zodValidateRequest";
+import { BrandValidation } from "./brand.validation";
 
 const router = express.Router();
 
 router.get("/", BrandController.getAllFromDB);
 
-router.post("/create-brand", BrandController.insertIntoDB);
+router.get("/:id", BrandController.getByIdFromDB);
+
+router.post(
+  "/create-brand",
+  zodValidateRequest(BrandValidation.create),
+  BrandController.insertIntoDB
+);
 
 export const BrandRoutes = router;

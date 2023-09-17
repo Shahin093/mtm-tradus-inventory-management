@@ -5,9 +5,16 @@ import { IPaginationOption } from "../../../interfaces/pagination";
 import { brandSearchableFields } from "./brand.constants";
 import { IBrand, IBrandFilters } from "./brand.interface";
 import { Brand } from "./brand.model";
+import { Supplier } from "../supplier/supplier.model";
+import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
 
 const insertIntoDB = async (payload: IBrand): Promise<IBrand> => {
-  const result = await Brand.create(payload);
+  const isExist = await Supplier.findById({ _id: payload.suppliers });
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Supplier does not exist.");
+  }
+  const result = (await Brand.create(payload)).populate("suppliers");
 
   return result;
 };
@@ -70,7 +77,13 @@ const getAllFromDB = async (
   };
 };
 
+const getByIdFromDB = async (id: string): Promise<IBrand | null> => {
+  const result = await Brand.findById(id).populate("suppliers");
+  return result;
+};
+
 export const BrandService = {
   getAllFromDB,
   insertIntoDB,
+  getByIdFromDB,
 };

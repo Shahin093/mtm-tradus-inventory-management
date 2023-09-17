@@ -5,6 +5,8 @@ import { IPaginationOption } from "../../../interfaces/pagination";
 import { storeSearchableFields } from "./store.constants";
 import { IStore, IStoreFilters } from "./store.interface";
 import { Store } from "./store.model";
+import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
 
 // {
 //   "name":"chattogram",
@@ -79,8 +81,24 @@ const getByIdFromDB = async (id: string): Promise<IStore | null> => {
   return result;
 };
 
+const updateFromDB = async (
+  id: string,
+  payload: Partial<IStore>
+): Promise<IStore | null> => {
+  const isExist = await Store.findById(id);
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Brand does not exist!");
+  }
+
+  const result = await Store.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  }).populate("manager");
+  return result;
+};
+
 export const StoreService = {
   insertInToDB,
   getAllFromDB,
   getByIdFromDB,
+  updateFromDB,
 };

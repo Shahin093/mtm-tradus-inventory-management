@@ -158,3 +158,15 @@ route : /api/v1/stores/create-store (POST)
 ### Get all Store
 
 route : /api/v1/stores/ (GET)
+
+### Get Single Store
+
+route : /api/v1/stores/:id (GET)
+
+### UPDATE Store : Only Access Admin
+
+route : /api/v1/stores/:id (PATCH)
+
+### DELETE Store : Only Access Admin
+
+route : /api/v1/stores/:id (DELETE)

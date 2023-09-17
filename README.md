@@ -148,3 +148,9 @@ route : /api/v1/products/:id (PATCH)
 ### DELETE Product : Only Access Admin
 
 route : /api/v1/products/:id (DELETE)
+
+## Implement Store : (Read, insert , update, GetById Delete, filtering, pagination and Zod validation)
+
+### Create Store : Only Access Admin
+
+route : /api/v1/stores/create-store (POST)

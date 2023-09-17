@@ -140,3 +140,7 @@ route : /api/v1/products/ (GET)
 ### Get Single Product
 
 route : /api/v1/products/:id (GET)
+
+### UPDATE Product : Only Access Admin
+
+route : /api/v1/products/:id (PATCH)

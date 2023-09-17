@@ -5,6 +5,8 @@ import { IPaginationOption } from "../../../interfaces/pagination";
 import { productSearchableFields } from "./product.constants";
 import { IProduct, IProductFilters } from "./product.interface";
 import { Product } from "./product.model";
+import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
 
 // {
 //     "name":"rowel ciment",
@@ -83,8 +85,24 @@ const getByIdFromDB = async (id: string): Promise<IProduct | null> => {
   return result;
 };
 
+const updateFromDB = async (
+  id: string,
+  payload: Partial<IProduct>
+): Promise<IProduct | null> => {
+  const isExist = await Product.findById(id);
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Product does not exist!");
+  }
+
+  const result = await Product.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  }).populate("brand");
+  return result;
+};
+
 export const ProductService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
+  updateFromDB,
 };

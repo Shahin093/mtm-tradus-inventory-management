@@ -23,6 +23,18 @@ const create = z.object({
   }),
 });
 
+const update = z.object({
+  body: z.object({
+    name: z.string().optional(),
+    description: z.string().optional(),
+    unit: z.string().optional(),
+    imageURL: z.string().optional(),
+    category: z.string().optional(),
+    brand: z.string().optional(),
+  }),
+});
+
 export const ProductValidation = {
   create,
+  update,
 };

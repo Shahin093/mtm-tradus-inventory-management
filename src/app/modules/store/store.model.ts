@@ -6,7 +6,7 @@ const BrandSchema = new Schema<IStore, StoreModel>(
     name: String,
     manager: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "Users",
     },
     status: {
       type: String,

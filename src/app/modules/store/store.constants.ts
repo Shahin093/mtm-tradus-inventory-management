@@ -10,14 +10,14 @@ export const name = [
 ];
 export const status = ["active", "inactive"];
 
-export const supplierFilterableFields = [
+export const storeFilterableFields = [
   "searchTerm",
   "name",
   "manager",
   "status",
 ];
 
-export const supplierSearchableFields = [
+export const storeSearchableFields = [
   "searchTerm",
   "name",
   "manager",

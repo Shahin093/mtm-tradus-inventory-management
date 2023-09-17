@@ -58,9 +58,22 @@ const updateFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await ProductService.deleteFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "product deleted Successfully",
+    data: result,
+  });
+});
+
 export const ProductController = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateFromDB,
+  deleteFromDB,
 };

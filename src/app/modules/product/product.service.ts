@@ -100,9 +100,33 @@ const updateFromDB = async (
   return result;
 };
 
+const deleteFromDB = async (id: string): Promise<IProduct | null> => {
+  const isExist = await Product.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "product does not found !");
+  }
+  const result = await Product.deleteOne(
+    { _id: id },
+    {
+      new: true,
+    }
+  );
+
+  if (result.deletedCount === 1) {
+    // Return the deleted user object
+    return isExist;
+  } else {
+    throw new Error("Failed to delete Brand");
+  }
+};
+
 export const ProductService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateFromDB,
+  deleteFromDB,
 };

@@ -144,3 +144,7 @@ route : /api/v1/products/:id (GET)
 ### UPDATE Product : Only Access Admin
 
 route : /api/v1/products/:id (PATCH)
+
+### DELETE Product : Only Access Admin
+
+route : /api/v1/products/:id (DELETE)

@@ -122,3 +122,7 @@ route : /api/v1/brands/:id (GET)
 
 route : /api/v1/brands/:id (PATCH)
 -- if The Brand is not found , i have responded a error-message.
+
+### DELETE Brand :
+
+route : /api/v1/brands/:id (DELETE)

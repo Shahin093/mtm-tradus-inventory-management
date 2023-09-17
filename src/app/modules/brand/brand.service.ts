@@ -93,8 +93,31 @@ const updateFromDB = async (
 
   const result = await Brand.findOneAndUpdate({ _id: id }, payload, {
     new: true,
-  });
+  }).populate("suppliers");
   return result;
+};
+
+const deleteFromDB = async (id: string): Promise<IBrand | null> => {
+  const isExist = await Brand.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Brand does not found !");
+  }
+  const result = await Brand.deleteOne(
+    { _id: id },
+    {
+      new: true,
+    }
+  );
+
+  if (result.deletedCount === 1) {
+    // Return the deleted user object
+    return isExist;
+  } else {
+    throw new Error("Failed to delete Brand");
+  }
 };
 
 export const BrandService = {
@@ -102,4 +125,5 @@ export const BrandService = {
   insertIntoDB,
   getByIdFromDB,
   updateFromDB,
+  deleteFromDB,
 };

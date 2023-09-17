@@ -82,8 +82,24 @@ const getByIdFromDB = async (id: string): Promise<IBrand | null> => {
   return result;
 };
 
+const updateFromDB = async (
+  id: string,
+  payload: Partial<IBrand>
+): Promise<IBrand | null> => {
+  const isExist = await Brand.findById(id);
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Brand does not exist!");
+  }
+
+  const result = await Brand.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
 export const BrandService = {
   getAllFromDB,
   insertIntoDB,
   getByIdFromDB,
+  updateFromDB,
 };

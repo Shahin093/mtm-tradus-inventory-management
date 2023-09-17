@@ -9,6 +9,8 @@ router.get("/", BrandController.getAllFromDB);
 
 router.get("/:id", BrandController.getByIdFromDB);
 
+router.patch("/:id", BrandController.updateFromDB);
+
 router.post(
   "/create-brand",
   zodValidateRequest(BrandValidation.create),

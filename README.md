@@ -114,6 +114,11 @@ Discuss: i have embed from supplier Schema here. i have checked supplier . if Th
 
 route : /api/v1/brands/ (GET)
 
-### Get By Brand and Filters:
+### Get By Brand:
 
 route : /api/v1/brands/:id (GET)
+
+### UPDATE Brand :
+
+route : /api/v1/brands/:id (PATCH)
+-- if The Brand is not found , i have responded a error-message.

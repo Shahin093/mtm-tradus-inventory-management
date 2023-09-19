@@ -170,3 +170,9 @@ route : /api/v1/stores/:id (PATCH)
 ### DELETE Store : Only Access Admin
 
 route : /api/v1/stores/:id (DELETE)
+
+## Implement Stock : (Read, Create , update, GetById Delete, filtering, pagination and Zod validation)
+
+### Create Stock : Only Access Admin
+
+route : /api/v1/stock/create-stock (POST)

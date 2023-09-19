@@ -96,9 +96,33 @@ const updateFromDB = async (
   return result;
 };
 
+const deleteFromDB = async (id: string): Promise<IStore | null> => {
+  const isExist = await Store.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Brand does not found !");
+  }
+  const result = await Store.deleteOne(
+    { _id: id },
+    {
+      new: true,
+    }
+  );
+
+  if (result.deletedCount === 1) {
+    // Return the deleted user object
+    return isExist;
+  } else {
+    throw new Error("Failed to delete Brand");
+  }
+};
+
 export const StoreService = {
   insertInToDB,
   getAllFromDB,
   getByIdFromDB,
   updateFromDB,
+  deleteFromDB,
 };

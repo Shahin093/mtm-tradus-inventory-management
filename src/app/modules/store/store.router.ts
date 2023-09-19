@@ -18,6 +18,12 @@ router.patch(
   StoreController.updateFromDB
 );
 
+router.delete(
+  "/:id",
+  //   auth(ENUM_USER_ROLE.ADMIN),
+  StoreController.deleteFromDB
+);
+
 router.post(
   "/create-store",
   zodValidateRequest(StoreValidation.create),

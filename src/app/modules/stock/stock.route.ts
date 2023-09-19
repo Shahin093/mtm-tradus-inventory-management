@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.get("/", StockController.getAllFromDB);
 
+router.get("/:id", StockController.getByIdFromDB);
+
+router.patch("/:id", StockController.updateFromDB);
+
 router.post(
   "/create-stock",
   zodValidateRequest(StockValidation.create),

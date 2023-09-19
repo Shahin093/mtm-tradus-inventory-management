@@ -175,8 +175,16 @@ route : /api/v1/stores/:id (DELETE)
 
 ### Create Stock : Only Access Admin
 
-route : /api/v1/stock/create-stock (POST)
+route : /api/v1/stocks/create-stock (POST)
 
 ### Get all Stock
 
-route : /api/v1/stock/ (GET)
+route : /api/v1/stocks/ (GET)
+
+### Get Single Stock
+
+route : /api/v1/stocks/:id (GET)
+
+### UPDATE Store : Only Access Admin
+
+route : /api/v1/stocks/:id (PATCH)

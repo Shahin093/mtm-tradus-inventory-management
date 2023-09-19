@@ -5,6 +5,8 @@ import { IPaginationOption } from "../../../interfaces/pagination";
 import { stockSearchableFields } from "./stock.constants";
 import { IStock, IStockFilters } from "./stock.interface";
 import { Stock } from "./stock.model";
+import ApiError from "../../../errors/ApiError";
+import httpStatus from "http-status";
 
 // {
 //   "productId":"65068a3b061412e31585e7ac",
@@ -94,7 +96,37 @@ const getAllFromDB = async (
   };
 };
 
+const getByIdFromDB = async (id: string): Promise<IStock | null> => {
+  const result = await Stock.findById(id)
+    .populate("brand")
+    .populate("suppliedBy")
+    .populate("productId")
+    .populate("store");
+  return result;
+};
+
+const updateFromDB = async (
+  id: string,
+  payload: Partial<IStock>
+): Promise<IStock | null> => {
+  const isExist = await Stock.findById(id);
+  if (!isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Stock does not exist!");
+  }
+
+  const result = await Stock.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  })
+    .populate("brand")
+    .populate("suppliedBy")
+    .populate("productId")
+    .populate("store");
+  return result;
+};
+
 export const StockService = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
+  updateFromDB,
 };

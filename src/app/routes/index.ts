@@ -35,7 +35,7 @@ const moduleRoutes = [
     route: StoreRoutes,
   },
   {
-    path: "/stock",
+    path: "/stocks",
     route: StockRoutes,
   },
 ];

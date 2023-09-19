@@ -34,7 +34,33 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await StockService.getByIdFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "stock fetched Successfully",
+    data: result,
+  });
+});
+
+const updateFromDB = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await StockService.updateFromDB(id, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "stock update Successfully",
+    data: result,
+  });
+});
+
 export const StockController = {
   insertIntoDB,
   getAllFromDB,
+  getByIdFromDB,
+  updateFromDB,
 };

@@ -124,9 +124,37 @@ const updateFromDB = async (
   return result;
 };
 
+const deleteFromDB = async (id: string): Promise<IStock | null> => {
+  const isExist = await Stock.findOne({
+    _id: id,
+  });
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Stock does not found !");
+  }
+  const result = await Stock.deleteOne(
+    { _id: id },
+    {
+      new: true,
+    }
+  )
+    .populate("brand")
+    .populate("suppliedBy")
+    .populate("productId")
+    .populate("store");
+
+  if (result.deletedCount === 1) {
+    // Return the deleted user object
+    return isExist;
+  } else {
+    throw new Error("Failed to delete Brand");
+  }
+};
+
 export const StockService = {
   insertIntoDB,
   getAllFromDB,
   getByIdFromDB,
   updateFromDB,
+  deleteFromDB,
 };

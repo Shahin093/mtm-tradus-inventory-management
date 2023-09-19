@@ -1,6 +1,6 @@
 ## Project Name : MTM Tradus (Inventory Management)
 
-#Live site Link :
+#Live site Link : ( https://mtm-tradus-api.vercel.app)
 
 ## Using Technologies :
 
@@ -185,6 +185,10 @@ route : /api/v1/stocks/ (GET)
 
 route : /api/v1/stocks/:id (GET)
 
-### UPDATE Store : Only Access Admin
+### UPDATE Stock : Only Access Admin
 
 route : /api/v1/stocks/:id (PATCH)
+
+### DELETE Stock : Only Access Admin
+
+route : /api/v1/stocks/:id (DELETE)

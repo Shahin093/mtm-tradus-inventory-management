@@ -176,3 +176,7 @@ route : /api/v1/stores/:id (DELETE)
 ### Create Stock : Only Access Admin
 
 route : /api/v1/stock/create-stock (POST)
+
+### Get all Stock
+
+route : /api/v1/stock/ (GET)

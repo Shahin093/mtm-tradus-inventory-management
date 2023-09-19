@@ -5,6 +5,8 @@ import { StockValidation } from "./stock.validation";
 
 const router = express.Router();
 
+router.get("/", StockController.getAllFromDB);
+
 router.post(
   "/create-stock",
   zodValidateRequest(StockValidation.create),
